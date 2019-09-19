@@ -11,9 +11,10 @@ import RealmSwift
 
 class ViewController: UITableViewController, UISearchBarDelegate {
     let realm = try! Realm()
-    lazy var searchBar: UISearchBar = UISearchBar()
-    lazy var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    lazy var searchBar: PhotoSearchBar = PhotoSearchBar()
+    lazy var activityIndicator: PhotoActivityIndicator = PhotoActivityIndicator()
     let cellId = "cellId"
+    let realmHelper = RealmHelper.shared
     private let cashe = ImageCache()
     private let network = NetworkService.shared
     lazy var searchHistory: Results<SearchHistory> = {
@@ -27,8 +28,7 @@ class ViewController: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let count = isValidHistory() ? searchHistory.count : 0
-        return count
+        return isHistoryNotEmpty() ? searchHistory.count : 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -38,22 +38,8 @@ class ViewController: UITableViewController, UISearchBarDelegate {
         return cell
     }
 
-    
-    private func addItemToRealm(str:String,url: URL,data: Data) {
-        guard let realm = try? Realm() else { return }
-        let obj = SearchHistory()
-        obj.searchString = str
-        obj.url = String(describing: url)
-        obj.searchedImage = data
-        do {
-            try? realm.write {
-                realm.add([obj])
-            }
-        }
-    }
-    
     private func getDataFromRealm(){
-        if isValidHistory() {
+        if isHistoryNotEmpty() {
             reloadViews()
         }
     }
@@ -71,18 +57,12 @@ class ViewController: UITableViewController, UISearchBarDelegate {
         setUpTableView()
     }
     
-    private func isValidHistory() -> Bool {
-        var result = false
-        if searchHistory.count > 0 {
-            result = true
-        }
-        return result
+    private func isHistoryNotEmpty() -> Bool {
+        return searchHistory.count > 0
     }
     
     private func setUpActivityIndicator(){
-        activityIndicator = UIActivityIndicatorView(style: .gray)
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.center = self.view.center
+        self.activityIndicator.configure(center:self.view.center)
         self.view.addSubview(activityIndicator)
     }
     
@@ -96,11 +76,7 @@ class ViewController: UITableViewController, UISearchBarDelegate {
     }
     
     private func setUpSearchBar(){
-        searchBar.searchBarStyle = UISearchBar.Style.prominent
-        searchBar.placeholder = "Type here to search image..."
-        searchBar.sizeToFit()
-        searchBar.isTranslucent = false
-        searchBar.backgroundImage = UIImage()
+        searchBar.configure()
         searchBar.delegate = self
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView:searchBar)
     }
@@ -124,7 +100,7 @@ class ViewController: UITableViewController, UISearchBarDelegate {
                 if let imgUrl = url {
                         let image = self.cashe.getImage(url: imgUrl)
                         if image != nil {
-                            self.addItemToRealm(str: query, url: imgUrl, data: Data((image?.pngData())!))
+                            self.realmHelper.addItemToRealm(str: query, url: imgUrl, data: Data((image?.pngData())!))
                         }
                 } else {
                     let delay = DispatchTime.now() + 2.0
