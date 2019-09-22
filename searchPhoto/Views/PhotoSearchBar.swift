@@ -10,10 +10,10 @@ import UIKit
 
 class PhotoSearchBar: UISearchBar {
     func configure(){
-        self.searchBarStyle = UISearchBar.Style.prominent
-        self.placeholder = "Type here to search image..."
-        self.sizeToFit()
-        self.isTranslucent = false
-        self.backgroundImage = UIImage()
+        searchBarStyle = UISearchBar.Style.prominent
+        placeholder = "Type here to search image..."
+        sizeToFit()
+        isTranslucent = false
+        backgroundImage = UIImage()
     }
 }

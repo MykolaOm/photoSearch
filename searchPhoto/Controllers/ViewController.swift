@@ -9,33 +9,33 @@
 import UIKit
 import RealmSwift
 
-class ViewController: UITableViewController, UISearchBarDelegate {
+class ViewController: UIViewController, UISearchBarDelegate {
     let realm = try! Realm()
     lazy var searchBar: PhotoSearchBar = PhotoSearchBar()
     lazy var activityIndicator: PhotoActivityIndicator = PhotoActivityIndicator()
-    let cellId = "cellId"
     let realmHelper = RealmHelper.shared
     private let cashe = ImageCache()
     private let network = NetworkService.shared
     lazy var searchHistory: Results<SearchHistory> = {
         self.realm.objects(SearchHistory.self)
     }()
+    var tableView: PhotoTable!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpSubViews()
-        getDataFromRealm()
+        updateDataSource()
     }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isHistoryNotEmpty() ? searchHistory.count : 0
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-        cell.textLabel?.text = searchHistory[indexPath.row].searchString
-        cell.imageView?.image = UIImage(data: searchHistory[indexPath.row].searchedImage!)
-        return cell
+    func updateDataSource() {
+        var dataSource = [StandartCell]()
+        for index in 0..<self.searchHistory.count {
+            guard let image = UIImage(data: searchHistory[index].searchedImage!) else { return }
+            let element = StandartCell(image: image, author: searchHistory[index].searchString)
+            dataSource.append(element)
+        }
+        tableView.customElements = dataSource
+//        getDataFromRealm()
     }
 
     private func getDataFromRealm(){
@@ -51,11 +51,9 @@ class ViewController: UITableViewController, UISearchBarDelegate {
     }
     
     private func setUpSubViews(){
-        setUpCells()
-        setUpSearchBar()
-        setUpActivityIndicator()
         setUpTableView()
-    }
+        setUpSearchBar()
+        setUpActivityIndicator()    }
     
     private func isHistoryNotEmpty() -> Bool {
         return searchHistory.count > 0
@@ -65,16 +63,6 @@ class ViewController: UITableViewController, UISearchBarDelegate {
         self.activityIndicator.configure(center:self.view.center)
         self.view.addSubview(activityIndicator)
     }
-    
-    private func setUpTableView() {
-        tableView.tableFooterView = UIView(frame: .zero)
-    }
-    
-    private func setUpCells(){
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
-        tableView.allowsSelection = false
-    }
-    
     private func setUpSearchBar(){
         searchBar.configure()
         searchBar.delegate = self
@@ -93,7 +81,11 @@ class ViewController: UITableViewController, UISearchBarDelegate {
             startRequestFor(query: query)
         }
     }
-    
+    func setUpTableView() {
+        tableView = PhotoTable()
+        view.addSubview(tableView)
+        tableView.setupTableView(cellType: CustomCellType.standart)
+    }
     private func startRequestFor(query:String) {
         if let url = network.getUrlWith(param: query, urlString: Unsplash.link) {
             network.getRequest(to: url, completion: { message, url in
@@ -101,13 +93,13 @@ class ViewController: UITableViewController, UISearchBarDelegate {
                         let image = self.cashe.getImage(url: imgUrl)
                         if image != nil {
                             self.realmHelper.addItemToRealm(str: query, url: imgUrl, data: Data((image?.pngData())!))
-                        }
+                    }
                 } else {
                     let delay = DispatchTime.now() + 2.0
                     self.showAlertFor(delay: delay, message: message)
                 }
                 DispatchQueue.main.async {
-                    self.reloadViews()
+                    self.updateDataSource()
                     self.activityIndicator.stopAnimating()
                 }
             })

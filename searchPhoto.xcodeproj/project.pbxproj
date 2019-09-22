@@ -11,6 +11,10 @@
 		F21082212333FFEE0026AB83 /* RealmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21082202333FFEE0026AB83 /* RealmHelper.swift */; };
 		F2108225233417120026AB83 /* PhotoSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2108224233417120026AB83 /* PhotoSearchBar.swift */; };
 		F210822B233421990026AB83 /* PhotoActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F210822A233421990026AB83 /* PhotoActivityIndicator.swift */; };
+		F210822D233428D40026AB83 /* PhotoTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F210822C233428D40026AB83 /* PhotoTable.swift */; };
+		F210822F233775A90026AB83 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F210822E233775A90026AB83 /* PhotoCell.swift */; };
+		F2108232233776090026AB83 /* StandartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2108231233776090026AB83 /* StandartCell.swift */; };
+		F2108234233776560026AB83 /* CustomCellProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2108233233776560026AB83 /* CustomCellProtocols.swift */; };
 		F22D1AF5232C0F0F0047089E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22D1AF4232C0F0F0047089E /* AppDelegate.swift */; };
 		F22D1AF7232C0F0F0047089E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22D1AF6232C0F0F0047089E /* ViewController.swift */; };
 		F22D1AFC232C0F120047089E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F22D1AFB232C0F120047089E /* Assets.xcassets */; };
@@ -28,6 +32,10 @@
 		F21082202333FFEE0026AB83 /* RealmHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmHelper.swift; sourceTree = "<group>"; };
 		F2108224233417120026AB83 /* PhotoSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSearchBar.swift; sourceTree = "<group>"; };
 		F210822A233421990026AB83 /* PhotoActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoActivityIndicator.swift; sourceTree = "<group>"; };
+		F210822C233428D40026AB83 /* PhotoTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTable.swift; sourceTree = "<group>"; };
+		F210822E233775A90026AB83 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		F2108231233776090026AB83 /* StandartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandartCell.swift; sourceTree = "<group>"; };
+		F2108233233776560026AB83 /* CustomCellProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCellProtocols.swift; sourceTree = "<group>"; };
 		F22D1AF1232C0F0F0047089E /* searchPhoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = searchPhoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F22D1AF4232C0F0F0047089E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F22D1AF6232C0F0F0047089E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -64,8 +72,10 @@
 		F210822623341E050026AB83 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F2108230233775EE0026AB83 /* TableViewCells */,
 				F2108224233417120026AB83 /* PhotoSearchBar.swift */,
 				F210822A233421990026AB83 /* PhotoActivityIndicator.swift */,
+				F210822C233428D40026AB83 /* PhotoTable.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -95,6 +105,16 @@
 				F22D1AF6232C0F0F0047089E /* ViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		F2108230233775EE0026AB83 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				F210822E233775A90026AB83 /* PhotoCell.swift */,
+				F2108231233776090026AB83 /* StandartCell.swift */,
+				F2108233233776560026AB83 /* CustomCellProtocols.swift */,
+			);
+			path = TableViewCells;
 			sourceTree = "<group>";
 		};
 		F22D1AE8232C0F0F0047089E = {
@@ -263,11 +283,15 @@
 			files = (
 				F22D1B2B232E299A0047089E /* SearchHistory.swift in Sources */,
 				F22D1AF7232C0F0F0047089E /* ViewController.swift in Sources */,
+				F2108232233776090026AB83 /* StandartCell.swift in Sources */,
+				F210822F233775A90026AB83 /* PhotoCell.swift in Sources */,
 				F22D1B29232D35FC0047089E /* ImageCashe.swift in Sources */,
 				F210822B233421990026AB83 /* PhotoActivityIndicator.swift in Sources */,
 				F22D1B27232D30ED0047089E /* UnsplashLinks.swift in Sources */,
+				F2108234233776560026AB83 /* CustomCellProtocols.swift in Sources */,
 				F2108225233417120026AB83 /* PhotoSearchBar.swift in Sources */,
 				F21082212333FFEE0026AB83 /* RealmHelper.swift in Sources */,
+				F210822D233428D40026AB83 /* PhotoTable.swift in Sources */,
 				F22D1B25232D30210047089E /* NetworkService.swift in Sources */,
 				F22D1AF5232C0F0F0047089E /* AppDelegate.swift in Sources */,
 			);
