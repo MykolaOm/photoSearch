@@ -10,7 +10,7 @@ import UIKit
 
 
 class PhotoTable: UITableView {
-    var customElements: [CustomCellModel]!
+    var customElements = [CustomCellModel]()
     {
         didSet {
             DispatchQueue.main.async {
@@ -23,7 +23,7 @@ class PhotoTable: UITableView {
         translatesAutoresizingMaskIntoConstraints = false
         guard let superView = self.superview else { return }
         NSLayoutConstraint.activate([
-            self.safeAreaLayoutGuide.topAnchor.constraint(equalTo: superView.topAnchor),
+            self.safeAreaLayoutGuide.topAnchor.constraint(equalTo: superView.layoutMarginsGuide.topAnchor),
             self.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: superView.bottomAnchor),
             self.leadingAnchor.constraint(equalTo: superView.leadingAnchor),
             self.trailingAnchor.constraint(equalTo: superView.trailingAnchor),
@@ -42,8 +42,9 @@ class PhotoTable: UITableView {
 }
 extension PhotoTable: UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let elements = customElements else { return 0 }
-        return elements.count
+//        guard let elements = customElements else { return 0 }
+//        return elements.count
+        return customElements.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

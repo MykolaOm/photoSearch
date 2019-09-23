@@ -24,4 +24,20 @@ class RealmHelper {
             }
         }
     }
+    func addKeyandPathToRealm(str: String, path: String) {
+        guard let realm = try? Realm() else { return }
+        let obj = SearchHistory()
+        obj.searchString = str
+        obj.url = path
+        do {
+            try? realm.write {
+                realm.add([obj])
+            }
+        }
+    }
+    func getPathFor(str:String) -> String? {
+        let obj = try! Realm().objects(SearchHistory.self).filter{$0.searchString == str}.first
+        guard let path = obj?.url else { return nil }
+        return path
+    }
 }

@@ -20,7 +20,7 @@ class ViewController: UIViewController, UISearchBarDelegate {
         self.realm.objects(SearchHistory.self)
     }()
     var tableView: PhotoTable!
-    
+    var oldCount : Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,12 +29,16 @@ class ViewController: UIViewController, UISearchBarDelegate {
     }
     func updateDataSource() {
         var dataSource = [StandartCell]()
-        for index in 0..<self.searchHistory.count {
-            guard let image = UIImage(data: searchHistory[index].searchedImage!) else { return }
+        for index in oldCount..<self.searchHistory.count {
+//            guard let image = UIImage(data: searchHistory[index].searchedImage!) else { return }
+            guard let image = FileManagerHelper.read(fileName: searchHistory[index].searchString) else { return }
             let element = StandartCell(image: image, author: searchHistory[index].searchString)
             dataSource.append(element)
         }
-        tableView.customElements = dataSource
+        oldCount = oldCount + dataSource.count
+        if !dataSource.isEmpty {
+            tableView.customElements.append(contentsOf: dataSource)
+        }
 //        getDataFromRealm()
     }
 
@@ -92,7 +96,10 @@ class ViewController: UIViewController, UISearchBarDelegate {
                 if let imgUrl = url {
                         let image = self.cashe.getImage(url: imgUrl)
                         if image != nil {
-                            self.realmHelper.addItemToRealm(str: query, url: imgUrl, data: Data((image?.pngData())!))
+                            let path = FileManagerHelper.write(fileName: query, image: image!)
+                            self.realmHelper.addKeyandPathToRealm(str: query, path: String(describing: path))
+// self.realmHelper.addItemToRealm(str: query, url: imgUrl,
+//                            data: Data((image?.pngData())!))
                     }
                 } else {
                     let delay = DispatchTime.now() + 2.0

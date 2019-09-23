@@ -15,6 +15,7 @@
 		F210822F233775A90026AB83 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F210822E233775A90026AB83 /* PhotoCell.swift */; };
 		F2108232233776090026AB83 /* StandartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2108231233776090026AB83 /* StandartCell.swift */; };
 		F2108234233776560026AB83 /* CustomCellProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2108233233776560026AB83 /* CustomCellProtocols.swift */; };
+		F210823623377D010026AB83 /* FileManagerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F210823523377D010026AB83 /* FileManagerHelper.swift */; };
 		F22D1AF5232C0F0F0047089E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22D1AF4232C0F0F0047089E /* AppDelegate.swift */; };
 		F22D1AF7232C0F0F0047089E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22D1AF6232C0F0F0047089E /* ViewController.swift */; };
 		F22D1AFC232C0F120047089E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F22D1AFB232C0F120047089E /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 		F210822E233775A90026AB83 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		F2108231233776090026AB83 /* StandartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandartCell.swift; sourceTree = "<group>"; };
 		F2108233233776560026AB83 /* CustomCellProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCellProtocols.swift; sourceTree = "<group>"; };
+		F210823523377D010026AB83 /* FileManagerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerHelper.swift; sourceTree = "<group>"; };
 		F22D1AF1232C0F0F0047089E /* searchPhoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = searchPhoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F22D1AF4232C0F0F0047089E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F22D1AF6232C0F0F0047089E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				F22D1B24232D30210047089E /* NetworkService.swift */,
 				F22D1B28232D35FC0047089E /* ImageCashe.swift */,
 				F21082202333FFEE0026AB83 /* RealmHelper.swift */,
+				F210823523377D010026AB83 /* FileManagerHelper.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				F22D1B2B232E299A0047089E /* SearchHistory.swift in Sources */,
 				F22D1AF7232C0F0F0047089E /* ViewController.swift in Sources */,
 				F2108232233776090026AB83 /* StandartCell.swift in Sources */,
+				F210823623377D010026AB83 /* FileManagerHelper.swift in Sources */,
 				F210822F233775A90026AB83 /* PhotoCell.swift in Sources */,
 				F22D1B29232D35FC0047089E /* ImageCashe.swift in Sources */,
 				F210822B233421990026AB83 /* PhotoActivityIndicator.swift in Sources */,
