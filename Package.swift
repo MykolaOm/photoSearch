@@ -1,10 +1,4 @@
-//
-//  Package.swift
-//  searchPhoto
-//
-//  Created by Nikolas Omelianov on 31.01.2020.
-//  Copyright © 2020 Nikolas Omelianov. All rights reserved.
-//
+// swift-tools-version:4.0
 
 import PackageDescription
 
