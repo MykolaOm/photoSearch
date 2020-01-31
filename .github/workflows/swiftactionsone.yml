@@ -10,15 +10,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build
-<<<<<<< Updated upstream
 #       run: xcodebuild \
 #           -searchPhoto.xcworkspace \
 #           -scheme searchPhoto\
 #           -sdk iphonesimulator \
 #           -destination 'platform=iOS Simulator,name=iPhone 8 Plus,OS=13.3' \
 #           test
-=======
->>>>>>> Stashed changes
       run: swift build -v
     - name: Run tests
       run: swift test -v
