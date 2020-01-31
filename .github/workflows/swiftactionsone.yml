@@ -11,7 +11,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build
       run: xcodebuild \
-          -workspace searchPhoto.xcworkspace \
+          -searchPhoto.xcworkspace \
           -scheme searchPhoto\
           -sdk iphonesimulator \
           -destination 'platform=iOS Simulator,name=iPhone 8 Plus,OS=13.3' \
