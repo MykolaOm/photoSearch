@@ -14,6 +14,13 @@ class testii: XCTestCase {
         let b = TestMe()
         let str = b.pri(str: "soup")
         XCTAssertEqual( str, "soup")
+        
+    }
+    func testPrisaqqqqqq(){
+        let b = TestMe()
+        let str = b.pri(str: "sousssp")
+        XCTAssertEqual( str, "soup")
+        
     }
     func testBool(){
         XCTAssert(TestMe.getTrue(str: "ok"))
