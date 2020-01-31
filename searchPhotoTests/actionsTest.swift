@@ -23,6 +23,7 @@ class testii: XCTestCase {
         let x = TestMe()
         let z = x.bilbo()
         XCTAssertEqual(z, "bilbo")
+        XCTAssertEqual(z, "bilbo1")
     }
 }
 
