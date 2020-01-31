@@ -1,4 +1,4 @@
-name: Swift
+name: swiftaction_test
 
 on: [push]
 
