@@ -13,6 +13,8 @@ class testii: XCTestCase {
     func testPri(){
         let b = TestMe()
         let str = b.pri(str: "soup")
+        let stra = b.pri(str: "soupa")
+        XCTAssertEqual( stra, "soupa")
         XCTAssertEqual( str, "soup")
     }
     func testBool(){
