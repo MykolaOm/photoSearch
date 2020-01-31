@@ -10,6 +10,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build
-      run: xcodebuild -workspace MyAwesomeApp.xcworkspace -scheme MyAwesomeApp
+      run: xcodebuild -workspace searchPhoto.xcworkspace -scheme searchPhoto
     # - name: Run tests
     #   run: swift test -v
