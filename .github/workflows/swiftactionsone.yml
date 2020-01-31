@@ -10,16 +10,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build
-      run: xcodebuild \
-          -searchPhoto.xcworkspace \
-          -scheme searchPhoto\
-          -sdk iphonesimulator \
-          -destination 'platform=iOS Simulator,name=iPhone 8 Plus,OS=13.3' \
-          test
-      
-      
-#       run: ls
-#             pwd
-#             swift build -v
-#     - name: Run tests
-#       run: swift test -v
+#       run: xcodebuild \
+#           -searchPhoto.xcworkspace \
+#           -scheme searchPhoto\
+#           -sdk iphonesimulator \
+#           -destination 'platform=iOS Simulator,name=iPhone 8 Plus,OS=13.3' \
+#           test
+      run: swift build -v
+    - name: Run tests
+      run: swift test -v
