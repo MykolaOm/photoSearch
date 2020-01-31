@@ -10,7 +10,8 @@ let package = Package(
     targets: [
         .target(
             name: "searchPhoto",
-            dependencies: []),
+            dependencies: [],
+            path: "."),
         .testTarget(
             name: "searchPhotoTests",
             dependencies: ["searchPhoto"]),
