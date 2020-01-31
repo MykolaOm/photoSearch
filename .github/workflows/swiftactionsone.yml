@@ -10,7 +10,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build
-      run: cd photoSearch
-           swift build -v
+      run: ls
+            pwd
+            swift build -v
     - name: Run tests
       run: swift test -v
